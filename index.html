@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Carousel</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="slider">
+        <img src="UCL_Image1.webp " alt="Slide 1" />
+        <img src="UCL_Image2.webp " alt="Slide 2" />
+        <img src="UCL_Image3.webp " alt="Slide 3" />
+        <img src="UCL_Image4.webp " alt="Slide 4" />
+        <img src="UCL_Image5.webp " alt="Slide 5" />
+        <img src="UCL_Image6.webp " alt="Slide 6" />
+      </div>
+      <div class="control">
+        <button id="prev"><</button>
+        <button id="next">></button>
+      </div>
+    </div>
+    <script>
+      // Grab elements from DOM
+      const images = document.querySelectorAll(".slider img");
+
+      const prevButton = document.querySelector("#prev");
+      const nextButton = document.querySelector("#next");
+
+      let slideIndex = 0;
+      let imagesLength = images.length - 1; // 6
+
+      changeImage(0); // using this to initialize the slider
+
+      function changeImage(index) {
+        // removes the visiblity of each of the images
+        images.forEach((image) => {
+          image.style.opacity = 0;
+        });
+
+        //   turns on visibily of image at desired index
+        images[index].style.opacity = 1;
+      }
+
+      prevButton.addEventListener("click", () => {
+        // slideIndex is still 0
+        slideIndex--;
+
+        if (slideIndex < 0) {
+          slideIndex = imagesLength;
+        }
+
+        //   slideIndex is now !
+        changeImage(slideIndex);
+      });
+
+      nextButton.addEventListener("click", () => {
+        // slideIndex is still 0
+        slideIndex++;
+
+        if (slideIndex > imagesLength) {
+          slideIndex = 0;
+        }
+
+        //   slideIndex is now !
+        changeImage(slideIndex);
+      });
+    </script>
+  </body>
+</html>
